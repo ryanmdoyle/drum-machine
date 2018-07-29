@@ -1,28 +1,144 @@
-.App {
-  text-align: center;
+html {
+  background: #000000;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+button {
+  font-size: 2.5em;
+  margin: 10%;
+  position: relative;
+  outline: 0;
+  
+  text-decoration: none;
+  border-radius: 5px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+button:active {
+  position: relative;
+  top: 3px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.red {
+  background-color: #CD1801;
+  box-shadow: 0px 6px rgb(150, 19, 1);
+  border: 1px solid rgb(150, 19, 1);
 }
 
-.App-intro {
-  font-size: large;
+.red:active {
+  box-shadow: 0px 3px rgb(150, 19, 1)
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.orange {
+  background-color: #F27800;
+  box-shadow: 0px 6px rgb(190, 96, 2);
+  border: 1px solid rgb(190, 96, 2);
+}
+
+.orange:active {
+  box-shadow: 0px 3px rgb(190, 96, 2)
+}
+
+.yellow {
+  background-color: #DFDC05;
+  box-shadow: 0px 6px rgb(165, 162, 4);
+  border: 1px solid rgb(165, 162, 4);
+}
+
+.yellow:active {
+  box-shadow: 0px 3px rgb(165, 162, 4)
+}
+
+#eightoeight {
+  width: 450px;
+  height: 750px;
+  background: #3C3E31;
+  margin: 5vh auto auto auto;
+  padding: 2%;
+  border-radius: 5px;
+  box-shadow: 0px 20px rgb(40, 41, 32);
+}
+
+#buttons {
+  display: grid;
+  width: 100%;
+  height: 60%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+    "one two three" 
+    "four five six"
+    "seven eight nine";
+  margin-bottom: 3vh;
+}
+
+#controls {
+  background-color: #7E8985;
+  position: relative;
+  height: 33%;
+  width: 80%;
+
+  border-radius: 10px;
+  margin: auto;
+  padding-top: 2%;
+}
+
+#sound-display {
+  background-color: black;
+  color: rgb(190, 96, 2);
+
+  position: relative;
+  border-radius: 5px;
+  width: 80%;
+  height: 20%;
+  margin: auto;
+}
+
+#sound-display p {
+  position: absolute;
+  margin: 6% auto auto 10%;
+}
+
+#one {
+  grid-area: one;
+}
+
+#two {
+  grid-area: two;
+}
+
+#three {
+  grid-area: three;
+}
+
+#four {
+  grid-area: four;
+}
+
+#five {
+  grid-area: five;
+}
+
+#six {
+  grid-area: six;
+}
+
+#seven {
+  grid-area: seven;
+}
+
+#eight {
+  grid-area: eight;
+}
+
+#nine {
+  grid-area: nine;
+}
+
+@media (max-width: 600px) {
+  #eightoeight {
+    width: 450px;
+    height: 750px;
+    background: #616161;
+    margin: 2vh auto 2vh auto;
+    padding: 2%;
+  }
 }
