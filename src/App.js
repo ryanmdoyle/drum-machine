@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg'; //import file!
-import kick from './Kick003.wav'
+import kick from './sounds/Kick1.wav' //not working
+import snare1 from './sounds/Snare1.wav'
 import './App.css';
 
 //const Audio = (props) => <audio id={props.id} src={props.src} preload="auto"></audio>;
@@ -27,7 +28,7 @@ class App extends Component {
         <div id="eightoeight">
           <div id="buttons">
             <button id="one" className="red" onClick={() => {this.playAudio(kick)}}>q</button>
-            <button id="two" className="red">w</button>
+            <button id="two" className="red" onClick={() => {this.playAudio(snare1)}}>w</button>
             <button id="three" className="red">e</button>
             <button id="four" className="orange">a</button>
             <button id="five" className="orange">s</button>
