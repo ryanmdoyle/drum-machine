@@ -9,6 +9,8 @@ import ride from './sounds/Ride.wav'
 import shaker from './sounds/Shaker.wav'
 import snare1 from './sounds/Snare1.wav'
 import snare2 from './sounds/Snare2.wav'
+import sounds from "./sounds.js"
+
 import './App.css';
 
 //const Audio = (props) => <audio id={props.id} src={props.src} preload="auto"></audio>;
