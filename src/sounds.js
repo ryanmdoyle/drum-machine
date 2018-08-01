@@ -8,50 +8,59 @@ import shaker from './sounds/Shaker.wav'
 import snare1 from './sounds/Snare1.wav'
 import snare2 from './sounds/Snare2.wav'
 
-export const sounds = {
+export const soundbank = {
     clap: {
       title: "Clap",
       key: 12,
-      clap
+      id: "five",
+      audio: clap
     },
     hihatClose: {
       title: "Hi-hat Closed",
       key: 12,
-      hhClose
+      id: "six", 
+      audio: hhClose
     },
     hihatOpen: {
       title: "Hi-hat Open",
       key: 12,
-      hhOpen
+      id: "nine",
+      audio:hhOpen
     },
     kick1: {
       title: "Kick 1",
       key: 12,
-      kick1
+      id: "one",
+      audio: kick1
     },
     kick2: {
       title: "Kick 2",
       key: 12,
-      kick2
+      id: "two",
+      audio: kick2
     },
     ride: {
       title: "Ride",
       key: 12,
-      ride
+      id: "three",
+      audio: ride
     },
     shaker: {
       title: "Shaker",
       key: 12,
-      shaker
+      id: "eight",
+      audio: shaker
     },
     snare1: {
       title: "Snare 1",
       key: 12,
-      snare1
+      id: "four",
+      audio: snare1
     },
     snare2: {
       title: "Snare 2",
       key: 12,
-      snare2
+      id: "seven",
+      audio: snare2
     },
   }
