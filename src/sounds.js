@@ -11,55 +11,55 @@ import snare2 from './sounds/Snare2.wav'
 export const soundbank = {
     clap: {
       title: "Clap",
-      key: 12,
+      key: "s",
       id: "five",
       audio: clap
     },
     hihatClose: {
       title: "Hi-hat Closed",
-      key: 12,
+      key: "d",
       id: "six", 
       audio: hhClose
     },
     hihatOpen: {
       title: "Hi-hat Open",
-      key: 12,
+      key: "c",
       id: "nine",
       audio:hhOpen
     },
     kick1: {
       title: "Kick 1",
-      key: 12,
+      key: "q",
       id: "one",
       audio: kick1
     },
     kick2: {
       title: "Kick 2",
-      key: 12,
+      key: "w",
       id: "two",
       audio: kick2
     },
     ride: {
       title: "Ride",
-      key: 12,
+      key: "e",
       id: "three",
       audio: ride
     },
     shaker: {
       title: "Shaker",
-      key: 12,
+      key: "x",
       id: "eight",
       audio: shaker
     },
     snare1: {
       title: "Snare 1",
-      key: 12,
+      key: "a",
       id: "four",
       audio: snare1
     },
     snare2: {
       title: "Snare 2",
-      key: 12,
+      key: "z",
       id: "seven",
       audio: snare2
     },
