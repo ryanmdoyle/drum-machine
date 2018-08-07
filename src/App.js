@@ -10,10 +10,21 @@ class App extends Component {
     }
     this.playAudio = this.playAudio.bind(this);
   //  this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.getEvtType = this.getEvtType.bind(this);
   }
 
+  getEvtType(evt) {
+    const currEvent = evt.type;
+    console.log(currEvent);
+  }
+
+  // componentDidMount() {
+  //   document.addEventListener("keydown", this.handleKeyPress)
+  // }
+
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyPress)
+    document.addEventListener("keydown", this.getEvtType)
+    document.addEventListener("click", this.getEvtType)
   }
 
   componentWillUnmount() {
