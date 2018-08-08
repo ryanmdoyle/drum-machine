@@ -15,7 +15,13 @@ class App extends Component {
 
   getEvtType(evt) {
     const currEvent = evt.type;
-    console.log(currEvent);
+    console.log("event type is:", currEvent);
+  }
+
+  simClick(clickTarget) {
+    const clickEvent = new MouseEvent("click", {
+      target: clickTarget //should be getting the dom id as a target from the soundbank object on a keyboard click, creating a clikc with the right click id
+    })
   }
 
   // componentDidMount() {
