@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import { soundbank } from "./sounds.js"
 import './App.css';
 
+const soundsArray = Object.values(soundbank);
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      volumeLevel: 50
+      volumeLevel: 50,
+      display: "Basic Mixer 808",
+      pressed: false
     }
     this.playAudio = this.playAudio.bind(this);
-  //  this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleKeyLift = this.handleKeyLift.bind(this);
     this.getEvtType = this.getEvtType.bind(this);
   }
 
@@ -18,17 +22,9 @@ class App extends Component {
     console.log("event type is:", currEvent);
   }
 
-  simClick(clickTarget) {
-    const clickEvent = new MouseEvent("click", {
-      target: clickTarget //should be getting the dom id as a target from the soundbank object on a keyboard click, creating a clikc with the right click id
-    })
-  }
-
-  // componentDidMount() {
-  //   document.addEventListener("keydown", this.handleKeyPress)
-  // }
-
   componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress)
+    document.addEventListener("keyup", this.handleKeyLift)
     document.addEventListener("keydown", this.getEvtType)
     document.addEventListener("click", this.getEvtType)
   }
@@ -37,38 +33,52 @@ class App extends Component {
     document.removeEventListener("keydown", this.handleKeyPress)
   }
 
-  // handleKeyPress(event) {
+  handleKeyPress(event) {
+    switch (event.key) {
+      case "q":
+        this.playAudio(soundbank.kick1.audio);
+        break;
+      case "w":
+        this.playAudio(soundbank.kick2.audio);
+        break;
+      case "e":
+        this.playAudio(soundbank.ride.audio);
+        break;
+      case "a":
+        this.playAudio(soundbank.snare1.audio);
+        break;
+      case "s":
+        this.playAudio(soundbank.clap.audio);
+        break;
+      case "d":
+        this.playAudio(soundbank.hihatClose.audio);
+        break;
+      case "z":
+        this.playAudio(soundbank.snare2.audio);
+        break;
+      case "x":
+        this.playAudio(soundbank.shaker.audio);
+        break;
+      case "c":
+        this.playAudio(soundbank.hihatOpen.audio);
+        break;
+    }
+    for (let i = 0; i < soundsArray.length; i++) {
+      if (soundsArray[i]["key"] === event.key) {
+        
+        this.setState({
+          display: soundsArray[i]["title"],
+          pressed: true
+        })
+      }
+    }
+  }
 
-  //   switch (event.keyCode) {
-  //     case 81:
-  //       this.playAudio(kick1);
-  //       break;
-  //     case 87:
-  //       this.playAudio(kick2);
-  //       break;
-  //     case 69:
-  //       this.playAudio(ride);
-  //       break;
-  //     case 65:
-  //       this.playAudio(snare1);
-  //       break;
-  //     case 83:
-  //       this.playAudio(clap);
-  //       break;
-  //     case 68:
-  //       this.playAudio(hhClose);
-  //       break;
-  //     case 90:
-  //       this.playAudio(snare2);
-  //       break;
-  //     case 88:
-  //       this.playAudio(shaker);
-  //       break;
-  //     case 67:
-  //       this.playAudio(hhOpen);
-  //       break;
-  //   }
-  // }
+  handleKeyLift() {
+    this.setState({
+      pressed: false
+    })
+  }
   
   playAudio(src) {
     const audio = new Audio(src);
@@ -81,19 +91,19 @@ class App extends Component {
       <div className="App">
         <div id="eightoeight">
           <div id="buttons">
-            <button id="one" className="red" onClick={() => {this.playAudio(soundbank.kick1.audio)}}>q</button>
-            <button id="two" className="red" onClick={() => {this.playAudio(soundbank.kick2.audio)}}>w</button>
-            <button id="three" className="red" onClick={() => {this.playAudio(soundbank.ride.audio)}}>e</button>
-            <button id="four" className="orange" onClick={() => {this.playAudio(soundbank.snare1.audio)}}>a</button>
-            <button id="five" className="orange" onClick={() => {this.playAudio(soundbank.clap.audio)}}>s</button>
-            <button id="six" className="orange" onClick={() => {this.playAudio(soundbank.hihatClose.audio)}}>d</button>
-            <button id="seven" className="yellow" onClick={() => {this.playAudio(soundbank.snare2.audio)}}>z</button>
-            <button id="eight" className="yellow" onClick={() => {this.playAudio(soundbank.shaker.audio)}}>x</button>
-            <button id="nine" className="yellow" onClick={() => {this.playAudio(soundbank.hihatOpen.audio)}}>c</button>
+            <button id="one" className="red" onMouseDown={() => {this.playAudio(soundbank.kick1.audio)}}>q</button>
+            <button id="two" className="red" onMouseDown={() => {this.playAudio(soundbank.kick2.audio)}}>w</button>
+            <button id="three" className="red" onMouseDown={() => {this.playAudio(soundbank.ride.audio)}}>e</button>
+            <button id="four" className="orange" onMouseDown={() => {this.playAudio(soundbank.snare1.audio)}}>a</button>
+            <button id="five" className="orange" onMouseDown={() => {this.playAudio(soundbank.clap.audio)}}>s</button>
+            <button id="six" className="orange" onMouseDown={() => {this.playAudio(soundbank.hihatClose.audio)}}>d</button>
+            <button id="seven" className="yellow" onMouseDown={() => {this.playAudio(soundbank.snare2.audio)}}>z</button>
+            <button id="eight" className="yellow" onMouseDown={() => {this.playAudio(soundbank.shaker.audio)}}>x</button>
+            <button id="nine" className="yellow" onMouseDown={() => {this.playAudio(soundbank.hihatOpen.audio)}}>c</button>
           </div>
           <div id="controls">
             <div id="sound-display">
-              <p>Sound Display</p>
+              <p>{this.state.display}</p>
             </div>
           </div>
         </div>
