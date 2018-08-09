@@ -15,6 +15,7 @@ class App extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleKeyLift = this.handleKeyLift.bind(this);
     this.getEvtType = this.getEvtType.bind(this);
+    this.getEvtKey = this.getEvtKey.bind(this);
   }
 
   getEvtType(evt) {
@@ -22,10 +23,17 @@ class App extends Component {
     console.log("event type is:", currEvent);
   }
 
+
+  getEvtKey(evt) {
+    const eventKey = evt.key;
+    return eventKey;
+  }
+
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyPress)
     document.addEventListener("keyup", this.handleKeyLift)
     document.addEventListener("keydown", this.getEvtType)
+    document.addEventListener("keydown", this.getEvtKey)
     document.addEventListener("click", this.getEvtType)
   }
 
@@ -91,7 +99,7 @@ class App extends Component {
       <div className="App">
         <div id="eightoeight">
           <div id="buttons">
-            <button id="one" className="red" onMouseDown={() => {this.playAudio(soundbank.kick1.audio)}}>q</button>
+            <button id="one" className={this.state.pressed && (this.getEvtKey === "q") ? "red-active" : "red"} onMouseDown={() => {this.playAudio(soundbank.kick1.audio)}}>q</button>
             <button id="two" className="red" onMouseDown={() => {this.playAudio(soundbank.kick2.audio)}}>w</button>
             <button id="three" className="red" onMouseDown={() => {this.playAudio(soundbank.ride.audio)}}>e</button>
             <button id="four" className="orange" onMouseDown={() => {this.playAudio(soundbank.snare1.audio)}}>a</button>

@@ -23,8 +23,16 @@ button:active {
   border: 1px solid rgb(150, 19, 1);
 }
 
+.red-active {
+  background-color: #CD1801;
+  box-shadow: 0px 3px rgb(150, 19, 1);
+  border: 1px solid rgb(150, 19, 1);
+  position: relative;
+  top: 3px;
+}
+
 .red:active {
-  box-shadow: 0px 3px rgb(150, 19, 1)
+  box-shadow: 0px 3px rgb(150, 19, 1);
 }
 
 .orange {
@@ -33,14 +41,30 @@ button:active {
   border: 1px solid rgb(190, 96, 2);
 }
 
+.orange-active {
+  background-color: #F27800;
+  box-shadow: 0px 3px rgb(190, 96, 2);
+  border: 1px solid rgb(190, 96, 2);
+  position: relative;
+  top: 3px;
+}
+
 .orange:active {
-  box-shadow: 0px 3px rgb(190, 96, 2)
+  box-shadow: 0px 3px rgb(190, 96, 2);
 }
 
 .yellow {
   background-color: #DFDC05;
   box-shadow: 0px 6px rgb(165, 162, 4);
   border: 1px solid rgb(165, 162, 4);
+}
+
+.yellow-active {
+  background-color: #DFDC05;
+  box-shadow: 0px 3px rgb(165, 162, 4);
+  border: 1px solid rgb(165, 162, 4);
+  position: relative;
+  top: 3px; 
 }
 
 .yellow:active {
