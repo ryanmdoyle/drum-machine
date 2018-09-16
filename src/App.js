@@ -12,37 +12,31 @@ class App extends Component {
       pressed: false
     }
     this.playAudio = this.playAudio.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.handleKeyLift = this.handleKeyLift.bind(this);
-    this.getEvtType = this.getEvtType.bind(this);
+    this.triggerSound = this.triggerSound.bind(this);
     this.getEvtKey = this.getEvtKey.bind(this);
+    this.simulatePress = this.simulatePress.bind(this);
   }
 
-  getEvtType(evt) {
-    const currEvent = evt.type;
-    console.log("event type is:", currEvent);
-  }
-
-
-  getEvtKey(evt) {
-    const eventKey = evt.key;
-    return eventKey;
+  getEvtKey(event) {
+    if (event.type === "click") {
+      return event.toElement.dataset.key;
+    } else if (event.type === "keydown") {
+      return event.key;
+    }
   }
 
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyPress)
-    document.addEventListener("keyup", this.handleKeyLift)
-    document.addEventListener("keydown", this.getEvtType)
-    document.addEventListener("keydown", this.getEvtKey)
-    document.addEventListener("click", this.getEvtType)
+    document.addEventListener("keydown", this.triggerSound)
+    document.addEventListener("click", this.triggerSound)
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyPress)
   }
-
-  handleKeyPress(event) {
-    switch (event.key) {
+  
+  triggerSound(event) {
+    const keyTriggered = this.getEvtKey(event);
+    switch (keyTriggered) {
       case "q":
         this.playAudio(soundbank.kick1.audio);
         break;
@@ -70,28 +64,36 @@ class App extends Component {
       case "c":
         this.playAudio(soundbank.hihatOpen.audio);
         break;
+      default: 
+        break;
     }
     for (let i = 0; i < soundsArray.length; i++) {
-      if (soundsArray[i]["key"] === event.key) {
-        
+      if (soundsArray[i]["key"] === keyTriggered) {
         this.setState({
           display: soundsArray[i]["title"],
           pressed: true
         })
       }
     }
+    this.simulatePress(event);
   }
 
-  handleKeyLift() {
-    this.setState({
-      pressed: false
-    })
+  simulatePress(event) {
+      const key = document.querySelector(`.orange[data-key="${this.getEvtKey(event)}"]`);
+      
+      if (key.classList) {
+        key.classList.add('active');
+      window.setTimeout(() => {
+        key.classList.remove('active');
+      }, 10);
+      }
+
   }
   
   playAudio(src) {
     const audio = new Audio(src);
+    audio.currentTime = 0; //rewinds audio to beginning if pressed before it has previously ended
     audio.play();
-    console.log(src);
   }
 
   render() {
@@ -99,15 +101,15 @@ class App extends Component {
       <div className="App">
         <div id="eightoeight">
           <div id="buttons">
-            <button id="one" className={this.state.pressed && (this.getEvtKey === "q") ? "red-active" : "red"} onMouseDown={() => {this.playAudio(soundbank.kick1.audio)}}>q</button>
-            <button id="two" className="red" onMouseDown={() => {this.playAudio(soundbank.kick2.audio)}}>w</button>
-            <button id="three" className="red" onMouseDown={() => {this.playAudio(soundbank.ride.audio)}}>e</button>
-            <button id="four" className="orange" onMouseDown={() => {this.playAudio(soundbank.snare1.audio)}}>a</button>
-            <button id="five" className="orange" onMouseDown={() => {this.playAudio(soundbank.clap.audio)}}>s</button>
-            <button id="six" className="orange" onMouseDown={() => {this.playAudio(soundbank.hihatClose.audio)}}>d</button>
-            <button id="seven" className="yellow" onMouseDown={() => {this.playAudio(soundbank.snare2.audio)}}>z</button>
-            <button id="eight" className="yellow" onMouseDown={() => {this.playAudio(soundbank.shaker.audio)}}>x</button>
-            <button id="nine" className="yellow" onMouseDown={() => {this.playAudio(soundbank.hihatOpen.audio)}}>c</button>
+            <button id="one" className="orange" data-key="q">q</button>
+            <button id="two" className="orange" data-key="w" >w</button>
+            <button id="three" className="orange" data-key="e" >e</button>
+            <button id="four" className="orange" data-key="a">a</button>
+            <button id="five" className="orange" data-key="s">s</button>
+            <button id="six" className="orange" data-key="d">d</button>
+            <button id="seven" className="orange" data-key="z">z</button>
+            <button id="eight" className="orange" data-key="x">x</button>
+            <button id="nine" className="orange" data-key="c">c</button>
           </div>
           <div id="controls">
             <div id="sound-display">
