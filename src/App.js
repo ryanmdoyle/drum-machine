@@ -79,15 +79,11 @@ class App extends Component {
   }
 
   simulatePress(event) {
-      const key = document.querySelector(`.orange[data-key="${this.getEvtKey(event)}"]`);
-      
-      if (key.classList) {
+      const key = document.querySelector(`button[data-key="${this.getEvtKey(event)}"]`);
         key.classList.add('active');
       window.setTimeout(() => {
         key.classList.remove('active');
-      }, 10);
-      }
-
+      }, 20);
   }
   
   playAudio(src) {
